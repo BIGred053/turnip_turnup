@@ -8,6 +8,8 @@ class SalesController < ApplicationController
   # GET /sales/1
   # GET /sales/1.json
   def show
+    redirect_to '/', notice: 'Sorry, the owner seems to have closed the sale!' if @sale.nil?
+
     all_in_queue = SalesUser.where(sale: @sale).order(:created_at)
     user_in_queue = SalesUser.find_by(sale: @sale, user: current_user)
 

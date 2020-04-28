@@ -17,20 +17,23 @@ ActiveRecord::Schema.define(version: 2020_04_28_022108) do
 
   create_table "islands", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "owner", null: false
+    t.bigint "user_id", null: false
     t.string "native_fruit", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_islands_on_user_id"
   end
 
   create_table "sales", force: :cascade do |t|
     t.bigint "island_id", null: false
-    t.bigint "owner_id", null: false
+    t.bigint "user_id", null: false
     t.integer "sale_price", null: false
     t.string "dodo_code", limit: 5, null: false
     t.bigint "active_visitor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["island_id"], name: "index_sales_on_island_id"
+    t.index ["user_id"], name: "index_sales_on_user_id"
   end
 
   create_table "sales_users", force: :cascade do |t|
@@ -55,6 +58,9 @@ ActiveRecord::Schema.define(version: 2020_04_28_022108) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "islands", "users"
+  add_foreign_key "sales", "islands"
+  add_foreign_key "sales", "users"
   add_foreign_key "sales_users", "sales"
   add_foreign_key "sales_users", "users"
 end
