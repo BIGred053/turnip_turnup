@@ -51,7 +51,7 @@ class SalesController < ApplicationController
   # DELETE /sales/1
   # DELETE /sales/1.json
   def destroy
-    @sale.destroy
+    @sale.destroy if @sale
 
     redirect_to '/', notice: 'Sale was successfully destroyed.'
   end

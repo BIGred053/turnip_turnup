@@ -13,8 +13,7 @@
       %th Sale Price
       %th People in Queue
       %th View Sale
-      %th Join Sale
-      %th Leave Sale
+      %th Action
   %tbody
     - @sales.each do |sale|
       %tr
@@ -22,5 +21,7 @@
         %td= sale.sale_price
         %td= sale.sales_users.count
         %td= link_to 'View', sale_path(sale)
-        %td= link_to 'Join', sale_join_path(sale), method: :post
-        %td= link_to 'Leave', sale_next_path(sale), method: :post
+        - if sale.sales_users.pluck(:user_id).include?(current_user.id)
+          %td= link_to 'Leave', sale_next_path(sale), method: :post
+        - else
+          %td= link_to 'Join', sale_join_path(sale), method: :post
