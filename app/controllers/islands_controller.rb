@@ -49,7 +49,7 @@ class IslandsController < ApplicationController
   def destroy
     @island.destroy
 
-    redirect_to islands_url, notice: 'Island was successfully destroyed.'
+    redirect_to '/', notice: 'Island was successfully destroyed.'
   end
 
   private
@@ -60,7 +60,7 @@ class IslandsController < ApplicationController
   end
 
   def verify_owner
-    return if @island.owner == current_user.id
+    return if @island.user_id == current_user.id
 
     flash[:alert] = "Only an island's owner can access and manage it."
     redirect_to '/'

@@ -53,7 +53,7 @@ class SalesController < ApplicationController
   def destroy
     @sale.destroy
 
-    redirect_to sales_url, notice: 'Sale was successfully destroyed.'
+    redirect_to '/', notice: 'Sale was successfully destroyed.'
   end
 
   def join
@@ -97,7 +97,7 @@ class SalesController < ApplicationController
   end
 
   def verify_sale_owner
-    return if @sale.owner == current_user.id
+    return if @sale.user_id == current_user.id
 
     flash[:alert] = 'Only the creator of a sale can manage it.'
     redirect_to '/'
