@@ -1,0 +1,19 @@
+= form_for @sale do |f|
+  - if @sale.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@sale.errors.count, "error")} prohibited this sale from being saved:"
+      %ul
+        - @sale.errors.full_messages.each do |message|
+          %li= message
+
+  = f.hidden_field :island_id, value: @user_island.id
+  = f.hidden_field :owner_id, value: current_user.id
+
+  = f.label :sale_price, 'Turnip Price: '
+  = f.text_field :sale_price
+
+  = f.label :dodo_code
+  = f.text_field :dodo_code
+
+  .actions
+    = f.submit 'Save'

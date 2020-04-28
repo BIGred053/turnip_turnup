@@ -1,0 +1,29 @@
+%p#notice= notice
+
+%h2= "Turnips Selling on #{@sale.island.name}"
+
+%p
+  %strong Sale Price:
+  = @sale.sale_price
+
+- if @sale.active_visitor_id == current_user.id
+  %p
+    %strong Dodo Code:
+    = @sale.dodo_code.upcase
+
+  = link_to 'All done!', sale_next_path(@sale), method: :post
+- else
+  - if @pos_in_queue
+    %p= "Keep checking in every minute or so, you are number #{@pos_in_queue}!"
+
+    = link_to 'Leave Queue', sale_next_path(@sale), method: :post
+  - else
+    = link_to 'Get in Line!', sale_join_path(@sale), method: :post
+
+%br
+%br
+
+- if @sale.owner_id == current_user.id
+  = link_to 'Edit', edit_sale_path(@sale)
+  \|
+= link_to 'Back', sales_path
