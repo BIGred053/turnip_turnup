@@ -7,7 +7,7 @@
           %li= message
 
   = f.hidden_field :island_id, value: @user_island.id
-  = f.hidden_field :owner_id, value: current_user.id
+  = f.hidden_field :user_id, value: current_user.id
 
   = f.label :sale_price, 'Turnip Price: '
   = f.text_field :sale_price

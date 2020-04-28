@@ -11,7 +11,7 @@
   = f.label :native_fruit, 'Native Fruit: '
   = f.text_field :native_fruit
 
-  = f.hidden_field :owner, value: current_user.id
+  = f.hidden_field :user_id, value: current_user.id
 
   .actions
     = f.submit 'Save'
