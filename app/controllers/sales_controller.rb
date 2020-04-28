@@ -20,7 +20,7 @@ class SalesController < ApplicationController
 
   # GET /sales/new
   def new
-    @sale = Sale.new
+    @sale = Sale.new(user_id: current_user.id)
   end
 
   # GET /sales/1/edit
@@ -93,7 +93,7 @@ class SalesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def sale_params
-    params.require(:sale).permit(:island_id, :owner_id, :sale_price, :dodo_code)
+    params.require(:sale).permit(:island_id, :user_id, :sale_price, :dodo_code)
   end
 
   def verify_sale_owner

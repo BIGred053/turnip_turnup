@@ -23,7 +23,7 @@
 %br
 %br
 
-- if @sale.user == current_user
+- if @sale.user_id == current_user.id
   = link_to 'Edit', edit_sale_path(@sale)
   \|
   = link_to 'Close Sale', sale_path(@sale), method: :delete

@@ -16,7 +16,7 @@ class IslandsController < ApplicationController
 
   # GET /islands/new
   def new
-    @island = Island.new
+    @island = Island.new(user_id: current_user.id)
   end
 
   # GET /islands/1/edit
@@ -68,6 +68,6 @@ class IslandsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def island_params
-    params.require(:island).permit(:name, :owner, :native_fruit)
+    params.require(:island).permit(:name, :user_id, :native_fruit)
   end
 end
