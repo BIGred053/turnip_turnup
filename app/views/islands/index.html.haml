@@ -1,0 +1,19 @@
+%h1 Listing islands
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @islands.each do |island|
+      %tr
+        %td= link_to 'Show', island
+        %td= link_to 'Edit', edit_island_path(island)
+        %td= link_to 'Destroy', island, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Island', new_island_path

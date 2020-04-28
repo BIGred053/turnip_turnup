@@ -1,4 +1,9 @@
 .navigation
+  %h1{style: 'display: inline-block;' }
+    %a{ href: '/', style: 'text-decoration: none;' }
+      %span{ style: 'color: green;' } Turnip
+      %span{ style: 'color: purple;' } Turn Up!
   %ul{ style: 'list-style-type: none;' }
     - if user_signed_in?
       %li{ style: 'float: right;' }= link_to "Logout", destroy_user_session_path, method: :delete
+      %li{ style: 'float: right;' }= link_to "My Island", "#{@user_island_path}"

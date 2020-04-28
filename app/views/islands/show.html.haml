@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%h2 My Island
+
+%p
+  %strong Name:
+  = @island.name
+
+%p
+  %strong Native Fruit:
+  = @island.native_fruit
+
+= link_to 'Edit', edit_island_path(@island)
+\|
+= link_to 'Back', islands_path

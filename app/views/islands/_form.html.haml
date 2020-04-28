@@ -1,0 +1,17 @@
+= form_for @island do |f|
+  - if @island.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@island.errors.count, "error")} prohibited this island from being saved:"
+      %ul
+        - @island.errors.full_messages.each do |message|
+          %li= message
+
+  = f.label :name, 'Name: '
+  = f.text_field :name
+  = f.label :native_fruit, 'Native Fruit: '
+  = f.text_field :native_fruit
+
+  = f.hidden_field :owner, value: current_user.id
+
+  .actions
+    = f.submit 'Save'
